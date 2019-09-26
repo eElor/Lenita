@@ -47,7 +47,8 @@ get_data <- function(Dir=".", FileType="csv", MetaSep="[\\/\\s]", Meta=NULL, Sav
   ColsToKeep <- readline(" >>> ") %>% {eval(parse(text = .))}
 
   # extract columns
-  Data <- mutate(Data, data=map(data, ~select(.x, ColsToKeep)))
+  Data <- mutate(Data, data=map(data, ~select(.x, ColsToKeep))) %>%
+    select(-path)
   return(Data)
 
 }
