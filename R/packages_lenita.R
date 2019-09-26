@@ -8,13 +8,13 @@ packages_lenita <- function(){
     }
     if(!package %in% installed.packages()){
       cat(package, "is being installed...")
-      install.packages("bladdf", dependencies = TRUE, verbose = FALSE, quiet = TRUE)
-      if(package %in% installed.packages()){
-        cat(package, "successfully installed")
-      } else {
-        warning("\n", package, " could not be installed!!!!\n")
-        Sys.sleep(1)
+      install.packages(package, dependencies = TRUE, verbose = FALSE, quiet = TRUE)
       }
+    if(package %in% installed.packages()){
+      cat(package, "successfully installed")
+    } else {
+      warning("\n", package, " could not be installed!!!!\n")
+      Sys.sleep(1)
     }
   }
 }
