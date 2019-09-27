@@ -6,7 +6,7 @@ get_data <- function(Dir=".", FileType="csv", MetaSep="[\\/\\s]", Meta=NULL, Sav
 
   # get metadata as list
   if (is.null(Meta)){
-    MetaList <- str_remove(FileNames, str_c("\\.", FileType)) %>% str_split(MetaSep)
+    MetaList <- str_remove(FileNames, str_c("\\.", FileType)) %>% str_split(MetaSep) %>% map(str_trim, side='both')
   }
 
   # determine length of metadata coded in file name
@@ -38,7 +38,7 @@ get_data <- function(Dir=".", FileType="csv", MetaSep="[\\/\\s]", Meta=NULL, Sav
   if (SaveMeta) writexl::write_xlsx(Meta, file.path(Dir,"../Meta.xlsx"))
 
   # load data as nested tibbles
-  Data <- mutate(Meta, data=map(path, read.csv, stringsAsFactors=FALSE))
+  Data <- mutate(Meta, data=map(path, read_csv))
 
   # which columns to extract
   Cols <- names(Data$data[[1]])
