@@ -26,7 +26,10 @@ get_data <- function(Dir="RAW_DATA", FileType="csv", MetaSep="[\\/\\s]", Meta=NU
 
   # get colnames for metadata
   MetaColumns <- map_chr(seq_len(MaxMetaLength), ~ {
-      ex <- head(unique(map_chr(MetaList, .x)), 3) # examples of unique values to name
+      ex <- map_chr(MetaList, .x) %>%
+        na.omit() %>%
+        unique() %>%
+        head(3) # examples of unique values to name
       ex <- str_c(ex, collapse = " / ")
       cat(str_c("Provide a name for: ", ex, "\n"))
       readline(" >>> ")
