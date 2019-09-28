@@ -1,6 +1,6 @@
 
 
-summary_statistics <- function(DF){
+lenita_summary_statistics <- function(DF){
   DF %>%
   filter(!is.na(value)) %>%
   group_by_at(vars(-value)) %>%

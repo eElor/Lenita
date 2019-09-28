@@ -1,5 +1,5 @@
 
-packages_lenita <- function(){
+lenita_packages <- function(){
 
   Packs <- c("tidyverse", "writexl", "readxl", "ggbeeswarm", "devtools", "cowplot", "crayon", "broom", "ggrepel")
 

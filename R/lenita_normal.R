@@ -1,5 +1,5 @@
 
-norm_distrib <- function() {
+lenita_normal <- function() {
   norm_dist <- is.na(normality_test$sig)
   ratio <- paste0(as.character(sum(norm_dist)), "/", length(normality_test$sig), "")
   if (all(norm_dist)) {
