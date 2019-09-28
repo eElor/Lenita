@@ -49,8 +49,8 @@ lenita_get_data <- function(Dir="RAW_DATA", FileType="csv", MetaSep="[\\/\\s]", 
   Data <- mutate(Meta, data=map(path, read_csv, col_types=cols()))
 
   # which columns to extract
+  Cols <- names(Data$data[[1]])
   if(is.null(ColToKeep)){
-    Cols <- names(Data$data[[1]])
     cat("Which column would you like to keep? (write one number)\nOptions: \n",
         map_chr(seq_along(Cols), ~ str_c("\t [", .x, "] ", Cols[.x],"\n")))
     ColToKeep <- readline(" >>> ") %>% {eval(parse(text = .))}
