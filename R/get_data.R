@@ -8,7 +8,8 @@ get_data <- function(Dir="RAW_DATA", FileType="csv", MetaSep="[\\/\\s]", Meta=NU
   if (is.null(Meta)){
     MetaList <- str_remove(FileNames, str_c("\\.", FileType)) %>%
       str_split(MetaSep) %>%
-      map(str_trim, side='both')
+      map(str_trim, side='both') %>%
+      map(na_if, "NA")
   }
 
   # determine length of metadata coded in file name
