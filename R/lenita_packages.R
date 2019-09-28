@@ -1,7 +1,7 @@
 
 lenita_packages <- function(){
 
-  Packs <- c("tidyverse", "writexl", "readxl", "ggbeeswarm", "devtools", "cowplot", "crayon", "broom", "ggrepel")
+  Packs <- c("tidyverse", "writexl", "readxl", "ggbeeswarm", "devtools", "cowplot", "crayon", "broom", "ggrepel", "glue")
 
   for(package in Packs){
 

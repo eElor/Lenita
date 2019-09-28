@@ -7,4 +7,5 @@ lenita_normality_test <- function(DF){
     unnest(norm_test) %>%
     select(-data) %>%
     mutate(sig = lenita_signif(p.value),
-           normal_distributed = ifelse(is.na(sig), "yes", "no"))}
+           normal_distributed = ifelse(is.na(sig), "yes", "no"))
+  }

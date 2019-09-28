@@ -1,5 +1,5 @@
 
-lenita_get_data <- function(Dir="RAW_DATA", FileType="csv", MetaSep="[\\/\\s]", Meta=NULL, SaveMeta=FALSE){
+lenita_get_data <- function(Dir="RAW_DATA", FileType="csv", MetaSep="[\\/\\s]", MetaColumns=NULL, Meta=NULL, SaveMeta=FALSE){
 
   # get file names
   FileNames <- list.files(Dir, recursive = TRUE)
@@ -25,6 +25,7 @@ lenita_get_data <- function(Dir="RAW_DATA", FileType="csv", MetaSep="[\\/\\s]", 
   }
 
   # get colnames for metadata
+  if(MetaColumns==NULL){
   MetaColumns <- map_chr(seq_len(MaxMetaLength), ~ {
       ex <- map_chr(MetaList, .x) %>%
         na.omit() %>%
@@ -34,6 +35,7 @@ lenita_get_data <- function(Dir="RAW_DATA", FileType="csv", MetaSep="[\\/\\s]", 
       cat(str_c("Provide a name for: ", ex, "\n"))
       readline(" >>> ")
     })
+  }
 
   # assign names to MetaList and transform to data.frame
   Meta <- map(MetaList, ~ set_names(.x, MetaColumns) %>% t %>% as_tibble) %>%
