@@ -54,12 +54,12 @@ get_data <- function(Dir="RAW_DATA", FileType="csv", MetaSep="[\\/\\s]", Meta=NU
 
   # accept only one column
   while(!length(ColToKeep)==1){
-    cat("Please select only one columns to keep!")
+    cat("Please select only one column to keep!")
     ColToKeep <- readline(" >>> ")
   }
 
   # extract columns
-  Data <- mutate(Data, data=map(data, ~select(.x, value=ColToKeep))) %>%
+  Data <- mutate(Data, data=map(data, ~select(.x, value=Cols[ColToKeep]))) %>%
     select(-path)
   cat(str_c("Data from column '", Cols[ColToKeep], "' was saved in column 'value'"))
   return(Data)
