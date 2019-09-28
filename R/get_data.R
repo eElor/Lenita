@@ -48,13 +48,21 @@ get_data <- function(Dir="RAW_DATA", FileType="csv", MetaSep="[\\/\\s]", Meta=NU
 
   # which columns to extract
   Cols <- names(Data$data[[1]])
-  cat("Which columns would you like to keep? (write numbers)\nOptions: \n",
+  cat("Which column would you like to keep? (write one number)\nOptions: \n",
       map_chr(seq_along(Cols), ~ str_c("\t [", .x, "] ", Cols[.x],"\n")))
-  ColsToKeep <- readline(" >>> ") %>% {eval(parse(text = .))}
+  # ColsToKeep <- readline(" >>> ") %>% {eval(parse(text = .))}
+  ColToKeep <- readline(" >>> ")
+
+  # accept only one columns
+  while(!length(ColToKeep)==1){
+    cat("Please select only one columns to keep!")
+    ColToKeep <- readline(" >>> ")
+  }
 
   # extract columns
-  Data <- mutate(Data, data=map(data, ~select(.x, ColsToKeep))) %>%
+  Data <- mutate(Data, data=map(data, ~select(.x, value=ColToKeep))) %>%
     select(-path)
+  cat(str_c("Data from column '", Cols[ColToKeep], "' was saved in column 'value'"))
   return(Data)
 
 }
