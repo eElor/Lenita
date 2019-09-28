@@ -1,5 +1,5 @@
 
-get_data <- function(Dir="RAW_DATA", FileType="csv", MetaSep="[\\/\\s]", Meta=NULL, SaveMeta=FALSE){
+get_data <- function(Dir="RAW_DATA", FileType="csv", MetaSep="[\\/\\s_]", Meta=NULL, SaveMeta=FALSE){
 
   # get file names
   FileNames <- list.files(Dir, recursive = TRUE)
