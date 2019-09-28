@@ -11,7 +11,7 @@ get_data <- function(Dir=".", FileType="csv", MetaSep="[\\/\\s]", Meta=NULL, Sav
 
   # determine length of metadata coded in file name
   MetaLengths <- sapply(MetaList, length)
-  MaxMetaLength <- max(MetaLengths)
+  MaxMetaLength <- round(median(MetaLengths))
 
   # test if meta in file names complete
   if(!all(MetaLengths==MaxMetaLength)){
