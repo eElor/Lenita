@@ -25,7 +25,7 @@ lenita_get_data <- function(Dir="RAW_DATA", FileType="csv", MetaSep="[\\/\\s]", 
   }
 
   # get colnames for metadata
-  if(MetaColumns==NULL){
+  if(is.null(MetaColumns)){
   MetaColumns <- map_chr(seq_len(MaxMetaLength), ~ {
       ex <- map_chr(MetaList, .x) %>%
         na.omit() %>%
