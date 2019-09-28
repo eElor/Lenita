@@ -40,7 +40,7 @@ get_data <- function(Dir="RAW_DATA", FileType="csv", MetaSep="[\\/\\s]", Meta=NU
   if (SaveMeta) writexl::write_xlsx(Meta, file.path(Dir,"../Meta.xlsx"))
 
   # load data as nested tibbles
-  Data <- mutate(Meta, data=map(path, read_csv))
+  Data <- mutate(Meta, data=map(path, read_csv, col_types=cols))
 
   # which columns to extract
   Cols <- names(Data$data[[1]])
