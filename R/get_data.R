@@ -50,8 +50,7 @@ get_data <- function(Dir="RAW_DATA", FileType="csv", MetaSep="[\\/\\s]", Meta=NU
   Cols <- names(Data$data[[1]])
   cat("Which column would you like to keep? (write one number)\nOptions: \n",
       map_chr(seq_along(Cols), ~ str_c("\t [", .x, "] ", Cols[.x],"\n")))
-  # ColsToKeep <- readline(" >>> ") %>% {eval(parse(text = .))}
-  ColToKeep <- readline(" >>> ")
+  ColToKeep <- readline(" >>> ") %>% {eval(parse(text = .))}
 
   # accept only one column
   while(!length(ColToKeep)==1){
