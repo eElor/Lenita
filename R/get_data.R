@@ -6,7 +6,9 @@ get_data <- function(Dir="RAW_DATA", FileType="csv", MetaSep="[\\/\\s]", Meta=NU
 
   # get metadata as list
   if (is.null(Meta)){
-    MetaList <- str_remove(FileNames, str_c("\\.", FileType)) %>% str_split(MetaSep) %>% map(str_trim, side='both')
+    MetaList <- str_remove(FileNames, str_c("\\.", FileType)) %>%
+      str_split(MetaSep) %>%
+      map(str_trim, side='both')
   }
 
   # determine length of metadata coded in file name
@@ -32,7 +34,7 @@ get_data <- function(Dir="RAW_DATA", FileType="csv", MetaSep="[\\/\\s]", Meta=NU
   # assign names to MetaList and transform to data.frame
   Meta <- map(MetaList, ~ set_names(.x, MetaColumns) %>% t %>% as_tibble) %>%
     bind_rows() %>%
-    mutate(path=FileNames)
+    mutate(path=file.path(Dir, FileNames))
 
   # save Meta as excel if needed
   if (SaveMeta) writexl::write_xlsx(Meta, file.path(Dir,"../Meta.xlsx"))
