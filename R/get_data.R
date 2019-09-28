@@ -53,7 +53,7 @@ get_data <- function(Dir="RAW_DATA", FileType="csv", MetaSep="[\\/\\s]", Meta=NU
   # ColsToKeep <- readline(" >>> ") %>% {eval(parse(text = .))}
   ColToKeep <- readline(" >>> ")
 
-  # accept only one columns
+  # accept only one column
   while(!length(ColToKeep)==1){
     cat("Please select only one columns to keep!")
     ColToKeep <- readline(" >>> ")
